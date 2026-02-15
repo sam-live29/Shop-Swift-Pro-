@@ -1,0 +1,141 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>ShopSwift | Modern E-commerce</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --brand-orange: #ff5221;
+      --brand-red: #ef4444;
+      --secure-green: #10b981;
+      --royal-blue: #2874f0;
+    }
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      font-family: 'Inter', sans-serif;
+      background-color: #f1f3f6;
+    }
+    body {
+      overflow-x: hidden;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+    @keyframes success-pop {
+      0% { transform: scale(0.5); opacity: 0; }
+      70% { transform: scale(1.1); opacity: 1; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+    .animate-success-pop {
+      animation: success-pop 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    }
+
+    @keyframes confetti-fall {
+      0% { transform: translateY(-100vh) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+    }
+    .confetti-particle {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      top: -20px;
+      animation: confetti-fall 3s linear forwards;
+    }
+
+    @keyframes morph-bg {
+      0% { background-color: white; }
+      100% { background-color: var(--royal-blue); }
+    }
+    
+    .cart-flying-particle {
+      position: fixed;
+      z-index: 10000;
+      width: 50px;
+      height: 50px;
+      background-color: white;
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
+      border-radius: 12px;
+      pointer-events: none;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+      border: 2px solid white;
+      animation: curve-fly 0.85s cubic-bezier(0.1, 0.6, 0.4, 1.0) forwards;
+    }
+
+    .wishlist-flying-particle {
+      position: fixed;
+      z-index: 10000;
+      width: 45px;
+      height: 45px;
+      background-color: #ef4444;
+      background-size: cover;
+      background-position: center;
+      /* Heart shape using mask */
+      -webkit-mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>');
+      mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>');
+      -webkit-mask-repeat: no-repeat;
+      mask-repeat: no-repeat;
+      -webkit-mask-size: contain;
+      mask-size: contain;
+      pointer-events: none;
+      box-shadow: 0 10px 25px rgba(239, 68, 68, 0.4);
+      animation: curve-fly 0.85s cubic-bezier(0.1, 0.6, 0.4, 1.0) forwards;
+    }
+
+    /* Improved Curved Flight Animation */
+    @keyframes curve-fly {
+      0% { 
+        transform: translate(0, 0) scale(1) rotate(0deg);
+        opacity: 1;
+      }
+      50% {
+        opacity: 1;
+        transform: translate(calc(var(--target-x) * 0.5), calc(var(--target-y) * 0.5 - 50px)) scale(0.8) rotate(15deg);
+      }
+      100% { 
+        transform: translate(var(--target-x), var(--target-y)) scale(0.15) rotate(45deg); 
+        opacity: 0.4; 
+      }
+    }
+
+    .ptr-indicator {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2000;
+      pointer-events: none;
+      overflow: visible;
+    }
+  </style>
+<script type="importmap">
+{
+  "imports": {
+    "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
+    "react/": "https://esm.sh/react@^19.2.4/",
+    "react": "https://esm.sh/react@^19.2.4",
+    "lucide-react": "https://esm.sh/lucide-react@^0.564.0",
+    "react-router-dom": "https://esm.sh/react-router-dom@^7.13.0"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+<body class="selection:bg-orange-100">
+  <div id="root"></div>
+<script type="module" src="/index.tsx"></script>
+</body>
+</html>
